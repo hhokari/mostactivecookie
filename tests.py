@@ -37,5 +37,11 @@ class TestActiveCookie(unittest.TestCase):
          except subprocess.CalledProcessError as e:
             self.assertEqual(e.returncode, 1)
 
+     def test_wrong_flag_option(self):
+         try:
+            subprocess.check_output("python func.py 'most_active_cookie cookie_log.csv' -f 2018-12-07", shell=True, universal_newlines=True)
+         except subprocess.CalledProcessError as e:
+            self.assertEqual(e.returncode, 1)
+
 if __name__ == '__main__':
     unittest.main()

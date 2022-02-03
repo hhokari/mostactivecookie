@@ -33,7 +33,9 @@ try:
             # skip header of csv file
             next(read)
             for row in read:
+                # str -> datetime
                 converted_datetime = datetime.strptime(row[1][:19], format)
+
                 # convert to total number of seconds for easier comparison for later
                 total_time = time.mktime(converted_datetime.timetuple())
                 if row[1][:10] == input_day:
