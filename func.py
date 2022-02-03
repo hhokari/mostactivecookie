@@ -18,17 +18,8 @@ for cookie in same_date_list:
     else:
         cookie_dict[cookie] += 1
 
-cur_max = 0
-max_list = []
-
-for key in cookie_dict.keys():
-    cookie = cookie_dict[key]
-    if cookie > cur_max:
-        cur_max = cookie
-        max_list = []
-        max_list.append(key)
-    elif cookie == cur_max:
-        max_list.append(key)
+max_freq = max(cookie_dict.values())
+max_list = [key for key, freq in cookie_dict.items() if freq == max_freq]
 
 for cookie in max_list:
     print(cookie)
