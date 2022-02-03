@@ -28,8 +28,6 @@ try:
         
         next(read)
         for row in read:
-            print("time")
-            print(row[1][:19])
             converted_datetime = datetime.strptime(row[1][:19], format)
             total_time = time.mktime(converted_datetime.timetuple())
             if row[1][:10] == input_day:
@@ -37,7 +35,6 @@ try:
                     time_dict[row[0]] = total_time
                 same_date_list.append(row[0])
 
-    print(same_date_list)
 
 except getopt.error as err:
     print(str(err))
@@ -46,23 +43,16 @@ except getopt.error as err:
 
 cookie_dict = {}
 
-# for cookie in same_date_list:
-#     if cookie not in cookie_dict.keys():
-#         cookie_dict[cookie] = 1
-#     else:
-#         cookie_dict[cookie] += 1
-
 for cookie in same_date_list:
     if cookie not in cookie_dict.keys():
         cookie_dict[cookie] = 1
     else:
         cookie_dict[cookie] += 1
 
-print(cookie_dict)
-# list_dict = cookie_dict.items()
+
+
 max_freq = max(cookie_dict.values())
 max_list = [(key,time_dict[key]) for key, freq in cookie_dict.items() if freq == max_freq]
-# b.sort(key=lambda x:x[1][2])
 max_list = sorted(max_list, key=lambda x: x[1])[::-1]
 for cookie in max_list:
     print(cookie[0])
